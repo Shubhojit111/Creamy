@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="iceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF9E6" />
+      <stop offset="100%" stop-color="#FFE8A3" />
+    </linearGradient>
+    <linearGradient id="cupGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#459AB8" />
+      <stop offset="100%" stop-color="#28586C" />
+    </linearGradient>
+  </defs>
+  <!-- Ice cream scoop -->
+  <circle cx="50" cy="38" r="28" fill="url(#iceGrad)" />
+  <circle cx="32" cy="45" r="16" fill="url(#iceGrad)" />
+  <circle cx="68" cy="45" r="16" fill="url(#iceGrad)" />
+  <!-- Cherry / topping -->
+  <circle cx="50" cy="18" r="7" fill="#E53935" />
+  <!-- Cup -->
+  <path d="M 22 52 L 78 52 L 68 92 L 32 92 Z" fill="url(#cupGrad)" rx="3" />
+  <rect x="18" y="48" width="64" height="7" rx="3.5" fill="#FFFFFF" opacity="0.9" />
+</svg>

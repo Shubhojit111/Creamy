@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Soft glass effect */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glass-pill-active {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a1a;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Ice cream tub dropshadow */
+.tub-shadow {
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.22)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+}
+
+.tub-shadow-sm {
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.18));
+}
+
+/* Smooth color transitions for background */
+.bg-transition {
+  transition: background-color 0.7s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.7s ease, color 0.7s ease;
+}
