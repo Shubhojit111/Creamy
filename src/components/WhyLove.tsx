@@ -30,9 +30,32 @@ export const WhyLove: React.FC = () => {
   ];
 
   return (
-    <section className="w-full bg-[#FFF8EB] py-14 sm:py-18 px-6 md:px-12 relative z-20 border-b border-[#F4E6D0]">
+    <section className="w-full bg-[#FFF8EB] py-10 sm:py-14 lg:py-18 px-4 sm:px-6 md:px-12 relative z-20 border-b border-[#F4E6D0]">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 divide-y sm:divide-y-0 lg:divide-x divide-[#ECD9C0]">
+        {/* Mobile: Horizontal Marquee — logo + text format */}
+        <div className="md:hidden overflow-hidden">
+          <div className="flex items-center gap-3 animate-marquee whitespace-nowrap">
+            {[...features, ...features, ...features].map((feat, idx) => {
+              const Icon = feat.icon;
+              return (
+                <div
+                  key={idx}
+                  className="flex items-center gap-2 flex-shrink-0 px-3 py-2 bg-[#FFF4E4] rounded-full border border-[#F2E0CD]"
+                >
+                  <div className="w-7 h-7 rounded-full bg-[#F5E7D3] flex items-center justify-center text-[#4A2818] shadow-sm flex-shrink-0">
+                    <Icon className="w-4 h-4 stroke-[1.8]" />
+                  </div>
+                  <span className="font-bubble text-[10px] font-bold text-[#2C1810] leading-tight">
+                    {feat.title} {feat.subtitle}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Desktop: Original Grid */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 divide-y sm:divide-y-0 lg:divide-x divide-[#ECD9C0]">
           {features.map((feat, idx) => {
             const Icon = feat.icon;
             return (

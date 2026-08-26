@@ -53,6 +53,7 @@ export default {
         'pulse-subtle': 'pulseSubtle 2s ease-in-out infinite',
         'bounce-soft': 'bounceSoft 1.5s ease-in-out infinite',
         'ping-soft': 'pingSoft 1s ease-in-out infinite',
+        'marquee': 'marquee 12s linear infinite',
       },
       keyframes: {
         float: {
@@ -70,6 +71,10 @@ export default {
         pingSoft: {
           '0%, 100%': { transform: 'scale(1)', opacity: '1' },
           '50%': { transform: 'scale(1.3)', opacity: '0.7' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-33.333%)' },
         },
       }
     },

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Heart, ShieldCheck, Award, ArrowRight, CheckCircle2 } from 'lucide-react';
-import { PDPNavbar } from '../components/pdp/PDPNavbar';
-import { AnnouncementBar } from '../components/pdp/AnnouncementBar';
+import { Navbar } from '../components/Navbar';
 import { PDPFooter } from '../components/pdp/PDPFooter';
 
 interface AboutPageProps {
@@ -22,15 +21,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   onOpenContact,
 }) => {
   return (
-    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417]">
-      <PDPNavbar
+    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417] pt-16 md:pt-20">
+      <Navbar
+        activeNav="ABOUT"
+
+        onNavClick={(item: string) => {
+          if (item === 'HOME') onNavigateToHome();
+          else if (item === 'MENU') onNavigateToCatalog();
+          else if (item === 'ABOUT') {}
+          else if (item === 'CONTACT') onOpenContact();
+        }}
         cartCount={cartCount}
         onOpenCart={onOpenCart}
-        onOpenSearch={onNavigateToCatalog}
         onOpenAccount={onOpenAccount}
-        onSelectFlavorMenu={onNavigateToCatalog}
       />
-      <AnnouncementBar />
 
       {/* Hero Header */}
       <section className="w-full max-w-7xl mx-auto px-6 md:px-12 pt-10 pb-8">
@@ -75,7 +79,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       </section>
 
       {/* 3 Pillars */}
-      <section className="w-full max-w-7xl mx-auto px-6 md:px-12 py-12">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white/85 p-8 rounded-3xl border border-[#ECD9C0] shadow-sm text-left">
             <div className="w-12 h-12 rounded-2xl bg-amber-100 text-[#7A4026] flex items-center justify-center mb-4">

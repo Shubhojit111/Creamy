@@ -1,20 +1,20 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { FLAVORS } from '../data/flavors';
-import type { Flavor } from '../data/flavors';
-import { Navbar } from '../components/Navbar';
-import { HeroContent } from '../components/HeroContent';
-import { SizeSelector } from '../components/SizeSelector';
-import { IceCreamCarousel } from '../components/IceCreamCarousel';
-import { BottomControls } from '../components/BottomControls';
-import { CreamWave } from '../components/CreamWave';
-import { WhyLove } from '../components/WhyLove';
-import { CustomerFavorites } from '../components/CustomerFavorites';
-import { LimitedOffer } from '../components/LimitedOffer';
-import { BrandStory } from '../components/BrandStory';
-import { SweetMoments } from '../components/SweetMoments';
-import { FlavorExperience } from '../components/FlavorExperience';
-import { Newsletter } from '../components/Newsletter';
-import { Footer } from '../components/Footer';
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { FLAVORS } from "../data/flavors";
+import type { Flavor } from "../data/flavors";
+import { Navbar } from "../components/Navbar";
+import { HeroContent } from "../components/HeroContent";
+import { SizeSelector } from "../components/SizeSelector";
+import { IceCreamCarousel } from "../components/IceCreamCarousel";
+import { BottomControls } from "../components/BottomControls";
+import { CreamWave } from "../components/CreamWave";
+import { WhyLove } from "../components/WhyLove";
+import { CustomerFavorites } from "../components/CustomerFavorites";
+import { LimitedOffer } from "../components/LimitedOffer";
+import { BrandStory } from "../components/BrandStory";
+import { SweetMoments } from "../components/SweetMoments";
+import { FlavorExperience } from "../components/FlavorExperience";
+import { Newsletter } from "../components/Newsletter";
+import { Footer } from "../components/Footer";
 
 interface HomePageProps {
   onNavigateToProduct: (flavorId?: string) => void;
@@ -41,8 +41,8 @@ export const HomePage: React.FC<HomePageProps> = ({
 }) => {
   const [flavorIndex, setFlavorIndex] = useState(1); // Default to Cookies & Kräm
   const [direction, setDirection] = useState(1);
-  const [selectedSize, setSelectedSize] = useState('100g');
-  const [activeNav, setActiveNav] = useState('HOME');
+  const [selectedSize, setSelectedSize] = useState("100g");
+  const [activeNav, setActiveNav] = useState("HOME");
   const heroRef = useRef<HTMLDivElement>(null);
 
   const currentFlavor = FLAVORS[flavorIndex];
@@ -57,32 +57,35 @@ export const HomePage: React.FC<HomePageProps> = ({
     setFlavorIndex((prev) => (prev - 1 + FLAVORS.length) % FLAVORS.length);
   }, []);
 
-  const handleSelectFlavor = useCallback((index: number) => {
-    setDirection(index > flavorIndex ? 1 : -1);
-    setFlavorIndex(index);
-  }, [flavorIndex]);
+  const handleSelectFlavor = useCallback(
+    (index: number) => {
+      setDirection(index > flavorIndex ? 1 : -1);
+      setFlavorIndex(index);
+    },
+    [flavorIndex],
+  );
 
   // Keyboard navigation for hero carousel
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (document.body.style.overflow !== 'hidden') {
-        if (e.key === 'ArrowRight') handleNext();
-        if (e.key === 'ArrowLeft') handlePrev();
+      if (document.body.style.overflow !== "hidden") {
+        if (e.key === "ArrowRight") handleNext();
+        if (e.key === "ArrowLeft") handlePrev();
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleNext, handlePrev]);
 
   const handleNavClick = (navItem: string) => {
     setActiveNav(navItem);
-    if (navItem === 'HOME') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (navItem === 'MENU') {
+    if (navItem === "HOME") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (navItem === "MENU") {
       onNavigateToCatalog();
-    } else if (navItem === 'ABOUT') {
+    } else if (navItem === "ABOUT") {
       onNavigateToAbout();
-    } else if (navItem === 'CONTACT') {
+    } else if (navItem === "CONTACT") {
       onNavigateToContact();
     }
   };
@@ -97,7 +100,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         style={{
           backgroundColor: currentFlavor.color.card,
         }}
-        className="w-full min-h-[660px] lg:h-screen lg:min-h-[700px] lg:max-h-[880px] relative flex flex-col justify-between transition-colors duration-700 bg-transition overflow-hidden z-10"
+        className="w-full min-h-[520px] sm:min-h-[660px] lg:h-screen lg:min-h-[700px] lg:max-h-[880px] relative flex flex-col justify-between transition-colors duration-700 bg-transition overflow-hidden z-10"
       >
         {/* Subtle radial lighting for 3D depth & floating background cookie crumbs */}
         <div className="absolute inset-0 bg-gradient-to-tr from-black/15 via-transparent to-white/10 pointer-events-none z-0" />
@@ -117,9 +120,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         />
 
         {/* Main Hero Content Area */}
-        <div className="relative flex-1 w-full max-w-7xl mx-auto flex flex-col px-6 md:px-12 z-20 min-h-0 justify-center">
+        <div className="relative flex-1 w-full max-w-7xl mx-auto flex flex-col px-4 sm:px-6 md:px-12 z-20 min-h-0 justify-center">
           {/* Top-Right Size Selector (50g, 75g, 100g) */}
-          <div className="absolute top-10 right-6 md:right-12 z-30">
+          <div className="absolute top-8 right-4 md:right-12 z-30">
             <SizeSelector
               sizes={currentFlavor.sizes}
               selectedSize={selectedSize}
@@ -141,7 +144,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
 
             {/* Right Hero Column: Central 3D Ice Cream Carousel Stage */}
-            <div className="md:col-span-7 h-full flex items-center justify-center relative z-10 min-h-[340px] sm:min-h-[400px]">
+            <div className="md:col-span-7 h-full w-full flex items-center justify-center relative z-10 min-h-[240px] sm:min-h-[400px]">
               <IceCreamCarousel
                 flavors={FLAVORS}
                 currentIndex={flavorIndex}
@@ -154,13 +157,13 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
         </div>
 
+        {/* Bottom Controls (Carousel Arrows & Social Links) */}
+
         {/* Bottom Cream Wave Transition */}
         <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
-          <CreamWave fillColor="#FFF8EB" className="h-36 sm:h-44 md:h-52" />
+          <CreamWave fillColor="#FFF8EB" className="h-24 sm:h-44 md:h-52" />
         </div>
-
-        {/* Bottom Controls (Carousel Arrows & Social Links) */}
-        <div className="relative z-30 max-w-7xl mx-auto w-full">
+        <div className="relative z-30 max-w-7xl w-full">
           <BottomControls onPrev={handlePrev} onNext={handleNext} />
         </div>
       </section>
@@ -175,14 +178,14 @@ export const HomePage: React.FC<HomePageProps> = ({
           ========================================================================= */}
       <CustomerFavorites
         onSelectProduct={onNavigateToProduct}
-        onAddToCart={(item) => onAddToCart(item, '100g')}
+        onAddToCart={(item) => onAddToCart(item, "100g")}
         onOpenMenu={onNavigateToCatalog}
       />
 
       {/* =========================================================================
           SECTION 4: LIMITED TIME OFFER (Buy 2 Get 1 Free!)
           ========================================================================= */}
-      <LimitedOffer onOrderNow={() => onNavigateToProduct('cookies')} />
+      <LimitedOffer onOrderNow={() => onNavigateToProduct("cookies")} />
 
       {/* =========================================================================
           SECTION 5: BRAND STORY (Made with Passion, Shared with Love.)

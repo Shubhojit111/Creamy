@@ -11,9 +11,9 @@ export const BottomControls: React.FC<BottomControlsProps> = ({
   onNext,
 }) => {
   return (
-    <div className="w-full flex items-center justify-between px-6 md:px-12 py-3 relative z-30">
+    <div className="w-full hidden md:flex items-center justify-between px-4 sm:px-6 md:px-12 py-3 relative z-30">
       {/* Left empty spacer for 3-column layout */}
-      <div className="w-24 md:w-32 hidden sm:block" />
+      <div className="w-16 md:w-32 hidden sm:block" />
 
       {/* Center Carousel Navigation Pill with Premium Glassy Visuals */}
       <div
@@ -51,7 +51,7 @@ export const BottomControls: React.FC<BottomControlsProps> = ({
       </div>
 
       {/* Right Social Icons */}
-      <div className="flex items-center gap-2.5">
+      <div className="flex items-center gap-2 sm:gap-2.5">
         <a
           href="https://facebook.com"
           target="_blank"

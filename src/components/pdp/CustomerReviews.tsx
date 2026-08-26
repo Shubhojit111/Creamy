@@ -1,6 +1,10 @@
-import React, { useState, useRef } from 'react';
-import { Star, ArrowLeft, ArrowRight, ArrowUpRight, CheckCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import {
+  Star,
+  ArrowUpRight,
+  CheckCircle,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
 interface CustomerReviewsProps {
   onOpenAllReviews: () => void;
@@ -10,48 +14,52 @@ export const CustomerReviews: React.FC<CustomerReviewsProps> = ({
   onOpenAllReviews,
 }) => {
   const [isPaused, setIsPaused] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   const baseReviews = [
     {
       id: 1,
       rating: 5,
-      quote: "The best cookies & cream ice cream I've ever had! So creamy and the cookie pieces are perfect.",
-      author: 'Jessica M.',
-      avatar: '/avatar1.png',
-      flavor: 'Cookies & Kräm',
+      quote:
+        "The best cookies & cream ice cream I've ever had! So creamy and the cookie pieces are perfect.",
+      author: "Jessica M.",
+      avatar: "/avatar1.png",
+      flavor: "Cookies & Kräm",
     },
     {
       id: 2,
       rating: 5,
-      quote: "Love that it's plant-based and has no added sugar. Tastes incredibly indulgent!",
-      author: 'Michael R.',
-      avatar: '/avatar2.png',
-      flavor: 'Mint Chokladchip',
+      quote:
+        "Love that it's plant-based and has no added sugar. Tastes incredibly indulgent!",
+      author: "Michael R.",
+      avatar: "/avatar2.png",
+      flavor: "Mint Chokladchip",
     },
     {
       id: 3,
       rating: 5,
-      quote: 'My whole family loves this flavor. We always keep a pint in the freezer!',
-      author: 'Sophie L.',
-      avatar: '/avatar3.png',
-      flavor: 'Strawberry Swirl',
+      quote:
+        "My whole family loves this flavor. We always keep a pint in the freezer!",
+      author: "Sophie L.",
+      avatar: "/avatar3.png",
+      flavor: "Strawberry Swirl",
     },
     {
       id: 4,
       rating: 5,
-      quote: 'Tastes like high-end Italian gelato without the blood sugar spike. Outstanding texture!',
-      author: 'Henrik V.',
-      avatar: '/avatar1.png',
-      flavor: 'Chocolate Fudge',
+      quote:
+        "Tastes like high-end Italian gelato without the blood sugar spike. Outstanding texture!",
+      author: "Henrik V.",
+      avatar: "/avatar1.png",
+      flavor: "Chocolate Fudge",
     },
     {
       id: 5,
       rating: 5,
-      quote: 'The salted caramel ribbons are so gooey and decadent. 100% recommended!',
-      author: 'Astrid N.',
-      avatar: '/avatar2.png',
-      flavor: 'Salted Caramel',
+      quote:
+        "The salted caramel ribbons are so gooey and decadent. 100% recommended!",
+      author: "Astrid N.",
+      avatar: "/avatar2.png",
+      flavor: "Salted Caramel",
     },
   ];
 
@@ -64,13 +72,6 @@ export const CustomerReviews: React.FC<CustomerReviewsProps> = ({
     { stars: 2, pct: 1 },
     { stars: 1, pct: 1 },
   ];
-
-  const handleScrollManual = (dir: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const shift = dir === 'left' ? -340 : 340;
-      scrollRef.current.scrollBy({ left: shift, behavior: 'smooth' });
-    }
-  };
 
   return (
     <section className="w-full bg-[#FFF8EB] py-14 sm:py-20 px-6 md:px-12 relative z-20 overflow-hidden border-t border-[#F2E0CD]">
@@ -94,24 +95,6 @@ export const CustomerReviews: React.FC<CustomerReviewsProps> = ({
               <span>View all reviews</span>
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
-
-            {/* Manual Scroll Controls */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => handleScrollManual('left')}
-                aria-label="Previous review"
-                className="w-8 h-8 rounded-full bg-white shadow-sm text-gray-700 flex items-center justify-center hover:bg-gray-50 border border-[#ECD9C0]"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-              </button>
-              <button
-                onClick={() => handleScrollManual('right')}
-                aria-label="Next review"
-                className="w-8 h-8 rounded-full bg-white shadow-sm text-gray-700 flex items-center justify-center hover:bg-gray-50 border border-[#ECD9C0]"
-              >
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
           </div>
         </div>
 
@@ -147,7 +130,9 @@ export const CustomerReviews: React.FC<CustomerReviewsProps> = ({
                         style={{ width: `${row.pct}%` }}
                       />
                     </div>
-                    <span className="w-8 text-right text-[11px] text-[#8C7568]">{row.pct}%</span>
+                    <span className="w-8 text-right text-[11px] text-[#8C7568]">
+                      {row.pct}%
+                    </span>
                   </div>
                 ))}
               </div>
@@ -169,13 +154,13 @@ export const CustomerReviews: React.FC<CustomerReviewsProps> = ({
             <div className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-[#FFF8EB] to-transparent z-10 pointer-events-none" />
 
             <motion.div
-              animate={isPaused ? {} : { x: ['0%', '-50%'] }}
+              animate={isPaused ? {} : { x: ["0%", "-50%"] }}
               transition={{
                 x: {
                   repeat: Infinity,
-                  repeatType: 'loop',
+                  repeatType: "loop",
                   duration: 24,
-                  ease: 'linear',
+                  ease: "linear",
                 },
               }}
               className="flex items-stretch gap-4 w-max py-1"

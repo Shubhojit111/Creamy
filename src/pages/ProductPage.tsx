@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import type { Flavor } from '../data/flavors';
-import { PDPNavbar } from '../components/pdp/PDPNavbar';
-import { AnnouncementBar } from '../components/pdp/AnnouncementBar';
+import { Navbar } from '../components/Navbar';
 import { ProductShowcase } from '../components/pdp/ProductShowcase';
 import { ProductInfoTabs } from '../components/pdp/ProductInfoTabs';
 import { CustomerReviews } from '../components/pdp/CustomerReviews';
 import { RelatedProducts } from '../components/pdp/RelatedProducts';
 import { WhyLoveBanner } from '../components/pdp/WhyLoveBanner';
 import { PDPBrandStory } from '../components/pdp/PDPBrandStory';
-import { PDPNewsletter } from '../components/pdp/PDPNewsletter';
+import { Newsletter } from '../components/Newsletter';
 import { PDPFooter } from '../components/pdp/PDPFooter';
 
 interface ProductPageProps {
@@ -45,21 +44,23 @@ export const ProductPage: React.FC<ProductPageProps> = ({
   }, [currentFlavor.id]);
 
   return (
-    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417]">
+    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417] pt-16 md:pt-20">
       {/* 1. Header / Navbar */}
-      <PDPNavbar
+      <Navbar
+        activeNav="MENU"
+        onNavClick={(item: string) => {
+          if (item === 'HOME') onNavigateToHome();
+          else if (item === 'MENU') onOpenMenu();
+          else if (item === 'ABOUT') onOpenAbout();
+          else if (item === 'CONTACT') onOpenContact();
+        }}
         cartCount={cartCount}
         onOpenCart={onOpenCart}
-        onOpenSearch={onOpenMenu}
         onOpenAccount={onOpenAccount}
-        onSelectFlavorMenu={onOpenMenu}
       />
 
-      {/* 2. Announcement Bar */}
-      <AnnouncementBar />
-
       {/* 3. Breadcrumbs Navigation (Clickable) */}
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 pt-6 pb-2 text-xs font-semibold text-[#8C7568] flex items-center gap-1.5">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-6 pb-2 text-xs font-semibold text-[#8C7568] flex items-center gap-1.5">
         <button
           onClick={onNavigateToHome}
           className="hover:text-[#381E15] transition-colors underline-offset-2 hover:underline"
@@ -105,7 +106,7 @@ export const ProductPage: React.FC<ProductPageProps> = ({
       <PDPBrandStory onLearnMore={onOpenAbout} />
 
       {/* 10. Newsletter (Stay in the Loop) */}
-      <PDPNewsletter />
+      <Newsletter />
 
       {/* 11. Editorial Footer */}
       <PDPFooter

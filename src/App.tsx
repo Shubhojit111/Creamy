@@ -16,6 +16,7 @@ import { CartDrawer } from './components/CartDrawer';
 import type { CartItem } from './components/CartDrawer';
 import { ReviewsModal } from './components/ReviewsModal';
 import { AccountModal } from './components/AccountModal';
+import { LoadingScreen } from './components/LoadingScreen';
 
 export function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'catalog' | 'product' | 'about' | 'contact'>('home');
@@ -193,6 +194,7 @@ export function App() {
 
   return (
     <div className="relative min-h-screen w-full bg-[#FFF8EB]">
+      <LoadingScreen />
       {/* Dynamic Page Router */}
       {currentPage === 'home' && (
         <HomePage
@@ -213,6 +215,7 @@ export function App() {
 
       {currentPage === 'catalog' && (
         <CatalogPage
+          onNavigateToHome={navigateToHome}
           onNavigateToProduct={navigateToProduct}
           onAddToCart={(f, size) => handleAddToCart(f, size, 1)}
           cartCount={cartItems.reduce((acc, i) => acc + i.quantity, 0)}

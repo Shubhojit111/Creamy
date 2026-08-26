@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Flavor } from '../data/flavors';
 
@@ -16,11 +16,20 @@ export const IceCreamCarousel: React.FC<IceCreamCarouselProps> = ({
   currentIndex,
   direction,
   onSelectFlavor,
+  onNext,
 }) => {
   const current = flavors[currentIndex];
   const nextIdx1 = (currentIndex + 1) % flavors.length;
   const nextIdx2 = (currentIndex + 2) % flavors.length;
   const prevIdx = (currentIndex - 1 + flavors.length) % flavors.length;
+
+  // Auto-advance every 10 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      onNext();
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [onNext]);
 
   return (
     <div className="relative w-full h-full flex items-center justify-center pointer-events-none select-none">
@@ -52,8 +61,8 @@ export const IceCreamCarousel: React.FC<IceCreamCarouselProps> = ({
             initial={{
               opacity: 0,
               scale: direction > 0 ? 0.60 : 0.85,
-              x: direction > 0 ? 160 : -140,
-              y: direction > 0 ? -25 : 35,
+              x: direction > 0 ? 80 : -80,
+              y: direction > 0 ? -15 : 20,
               rotate: direction > 0 ? 5 : -4,
             }}
             animate={{
@@ -66,13 +75,13 @@ export const IceCreamCarousel: React.FC<IceCreamCarouselProps> = ({
             exit={{
               opacity: 0,
               scale: direction > 0 ? 0.40 : 0.60,
-              x: direction > 0 ? -180 : 160,
-              y: direction > 0 ? 150 : -25,
+              x: direction > 0 ? -100 : 100,
+              y: direction > 0 ? 80 : -15,
               rotate: direction > 0 ? -8 : 5,
             }}
             transition={{
-              duration: 0.65,
-              ease: [0.34, 1.25, 0.64, 1],
+              duration: 0.5,
+              ease: [0.34, 1.15, 0.64, 1],
             }}
             className="relative flex items-center justify-center pointer-events-auto cursor-grab active:cursor-grabbing"
             drag="x"
@@ -96,7 +105,7 @@ export const IceCreamCarousel: React.FC<IceCreamCarouselProps> = ({
             <motion.img
               src={current.image}
               alt={current.name}
-              className="w-56 sm:w-64 md:w-72 lg:w-[320px] xl:w-[350px] h-auto object-contain tub-shadow z-20 transition-transform duration-300"
+              className="w-44 sm:w-64 md:w-72 lg:w-[320px] xl:w-[350px] h-auto object-contain tub-shadow z-20"
               draggable={false}
               animate={{
                 y: [0, -5, 0],

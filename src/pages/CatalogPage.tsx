@@ -4,18 +4,17 @@ import {
   Plus,
   Star,
   Filter,
-  Check,
   ChevronRight,
   ChevronLeft,
   X,
 } from 'lucide-react';
-import confetti from 'canvas-confetti';
 import { CATALOG_PRODUCTS } from '../data/catalog';
-import { PDPNavbar } from '../components/pdp/PDPNavbar';
-import { AnnouncementBar } from '../components/pdp/AnnouncementBar';
+import { Navbar } from '../components/Navbar';
+import { Newsletter } from '../components/Newsletter';
 
 interface CatalogPageProps {
   onNavigateToProduct: (productId: string) => void;
+  onNavigateToHome: () => void;
   onAddToCart: (product: any, size: string) => void;
   cartCount: number;
   onOpenCart: () => void;
@@ -26,6 +25,7 @@ interface CatalogPageProps {
 
 export const CatalogPage: React.FC<CatalogPageProps> = ({
   onNavigateToProduct,
+  onNavigateToHome,
   onAddToCart,
   cartCount,
   onOpenCart,
@@ -41,8 +41,6 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
   const [sortBy, setSortBy] = useState<string>('popular');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [currentPageNum, setCurrentPageNum] = useState<number>(1);
-  const [newsletterEmail, setNewsletterEmail] = useState<string>('');
-  const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
 
   const categoryPills = [
     { id: 'all', label: 'All Products', icon: '🍨' },
@@ -110,36 +108,25 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
     });
   }, [selectedCategory, searchQuery, selectedFlavorProfile, selectedSize, maxPrice, selectedDietary, sortBy]);
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newsletterEmail) return;
-    confetti({
-      particleCount: 60,
-      spread: 60,
-      origin: { y: 0.8 },
-      colors: ['#4A2818', '#FAEED1', '#459AB8', '#CC4663'],
-    });
-    setIsSubscribed(true);
-    setTimeout(() => {
-      setNewsletterEmail('');
-      setIsSubscribed(false);
-    }, 3000);
-  };
-
   return (
-    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417]">
+    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417] pt-16 md:pt-20">
       {/* 1. Header & Announcement Bar */}
-      <PDPNavbar
+      <Navbar
+        activeNav="MENU"
+
+        onNavClick={(item: string) => {
+          if (item === 'HOME') onNavigateToHome();
+          else if (item === 'MENU') {}
+          else if (item === 'ABOUT') onOpenAbout();
+          else if (item === 'CONTACT') onOpenContact();
+        }}
         cartCount={cartCount}
         onOpenCart={onOpenCart}
-        onOpenSearch={() => {}}
         onOpenAccount={onOpenAccount}
-        onSelectFlavorMenu={() => {}}
       />
-      <AnnouncementBar />
 
       {/* 2. Top Hero Banner */}
-      <section className="w-full max-w-7xl mx-auto px-6 md:px-12 pt-8 pb-4">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-8 pb-4">
         <div className="relative w-full rounded-[36px] bg-gradient-to-r from-[#FFF0DB] via-[#FFF5E4] to-[#FFEEDB] border border-[#F2E0CD] p-8 sm:p-12 overflow-hidden shadow-sm flex flex-col lg:flex-row items-center justify-between gap-8">
           <div className="max-w-xl text-left z-10">
             <span className="inline-block bg-[#F4E3D0] text-[#7A4026] text-[11px] font-bold px-3.5 py-1 rounded-full uppercase tracking-wider mb-3 shadow-sm">
@@ -178,7 +165,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       </section>
 
       {/* 3. Horizontal Category Filter Pills Carousel */}
-      <section className="w-full max-w-7xl mx-auto px-6 md:px-12 py-4">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-4">
         <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
           {categoryPills.map((cat) => {
             const isSelected = selectedCategory === cat.id;
@@ -204,7 +191,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       </section>
 
       {/* 4. Main Catalog Section */}
-      <section className="w-full max-w-7xl mx-auto px-6 md:px-12 py-6">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Sidebar */}
           <aside className="lg:col-span-3 bg-white/85 rounded-3xl p-6 border border-[#ECD9C0] shadow-sm space-y-6 text-left">
@@ -497,7 +484,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       </section>
 
       {/* 5. Benefits Bar */}
-      <section className="w-full max-w-7xl mx-auto px-6 md:px-12 py-8">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-8">
         <div className="bg-white/80 rounded-3xl p-6 border border-[#ECD9C0] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           <div className="flex flex-col items-center">
             <span className="text-2xl mb-1">🌿</span>
@@ -523,60 +510,10 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
       </section>
 
       {/* 6. Newsletter */}
-      <section className="w-full max-w-7xl mx-auto px-6 md:px-12 py-6">
-        <div className="relative w-full bg-[#753D2A] rounded-[36px] overflow-hidden p-8 sm:p-12 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4 z-10">
-            <div className="relative flex items-center -space-x-4 hidden sm:flex">
-              <img src="/mint_transparent.png" alt="Mint" className="w-16 h-auto drop-shadow-md" />
-              <img src="/cookies_transparent.png" alt="Cookies" className="w-20 h-auto drop-shadow-xl z-10" />
-              <img src="/strawberry_transparent.png" alt="Strawberry" className="w-16 h-auto drop-shadow-md" />
-            </div>
-            <div className="text-left">
-              <span className="inline-block bg-white/20 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase mb-1">
-                STAY IN THE LOOP
-              </span>
-              <h3 className="font-bubble text-2xl sm:text-3xl font-bold text-white">
-                Get the Scoop First!
-              </h3>
-              <p className="text-xs text-[#F0D5C9]">
-                Join our newsletter and be the first to know about new flavors and exclusive perks.
-              </p>
-            </div>
-          </div>
-
-          <div className="w-full lg:w-auto z-10">
-            {isSubscribed ? (
-              <div className="bg-emerald-500/20 text-emerald-100 border border-emerald-400/30 px-6 py-3 rounded-full text-xs font-bold flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-300" />
-                <span>You're in! Check your inbox for 15% off.</span>
-              </div>
-            ) : (
-              <form
-                onSubmit={handleSubscribe}
-                className="w-full max-w-md flex items-center bg-[#5D2E1F]/80 rounded-full p-1.5 border border-white/20"
-              >
-                <input
-                  type="email"
-                  required
-                  value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className="bg-transparent text-white placeholder:text-white/60 text-xs px-4 py-2 w-full focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  className="bg-[#FAEED1] hover:bg-white text-[#2C1810] font-bold text-xs uppercase px-6 py-2.5 rounded-full shadow-md hover:scale-105 active:scale-95 transition-all flex-shrink-0"
-                >
-                  SUBSCRIBE
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      </section>
+      <Newsletter />
 
       {/* 7. Footer with Payment Badges */}
-      <footer className="w-full bg-[#FFF8EB] pt-12 pb-10 px-6 md:px-12 relative z-20 text-[#4A2818]">
+      <footer className="w-full bg-[#FFF8EB] pt-12 pb-10 px-4 sm:px-6 md:px-12 relative z-20 text-[#4A2818]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-12 gap-8 pb-10 border-b border-[#ECD9C0]">
             <div className="col-span-2 md:col-span-4 flex flex-col items-start">

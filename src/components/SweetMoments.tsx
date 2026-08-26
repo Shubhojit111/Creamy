@@ -71,20 +71,20 @@ export const SweetMoments: React.FC = () => {
 
         {/* Carousel Container */}
         <div className="relative group">
-          {/* Arrow Left */}
+          {/* Arrow Left - hidden on mobile */}
           <button
             onClick={() => handleScroll('left')}
             aria-label="Scroll left"
-            className="absolute -left-3 sm:-left-16 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white shadow-lg text-gray-700 flex items-center justify-center hover:bg-gray-50 hover:scale-110 active:scale-95 transition-all border border-gray-100"
+            className="hidden sm:flex absolute -left-3 sm:-left-16 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white shadow-lg text-gray-700 items-center justify-center hover:bg-gray-50 hover:scale-110 active:scale-95 transition-all border border-gray-100"
           >
             <ArrowLeft className="w-4 h-4 stroke-[2.5]" />
           </button>
 
-          {/* Arrow Right */}
+          {/* Arrow Right - hidden on mobile */}
           <button
             onClick={() => handleScroll('right')}
             aria-label="Scroll right"
-            className="absolute -right-3 sm:-right-16 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white shadow-lg text-gray-700 flex items-center justify-center hover:bg-gray-50 hover:scale-110 active:scale-95 transition-all border border-gray-100"
+            className="hidden sm:flex absolute -right-3 sm:-right-16 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white shadow-lg text-gray-700 items-center justify-center hover:bg-gray-50 hover:scale-110 active:scale-95 transition-all border border-gray-100"
           >
             <ArrowRight className="w-4 h-4 stroke-[2.5]" />
           </button>
@@ -125,6 +125,24 @@ export const SweetMoments: React.FC = () => {
               </a>
             ))}
           </div>
+        </div>
+
+        {/* Carousel Arrows — mobile only, right-aligned */}
+        <div className="flex sm:hidden items-center justify-end gap-2 mt-4">
+          <button
+            onClick={() => handleScroll('left')}
+            aria-label="Previous"
+            className="w-8 h-8 rounded-full bg-white shadow-sm text-gray-700 flex items-center justify-center hover:bg-gray-50 border border-[#ECD9C0] active:scale-90 transition-all"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+          </button>
+          <button
+            onClick={() => handleScroll('right')}
+            aria-label="Next"
+            className="w-8 h-8 rounded-full bg-white shadow-sm text-gray-700 flex items-center justify-center hover:bg-gray-50 border border-[#ECD9C0] active:scale-90 transition-all"
+          >
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
         </div>
       </div>
     </section>

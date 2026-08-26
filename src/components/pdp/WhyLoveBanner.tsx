@@ -85,17 +85,17 @@ export const WhyLoveBanner: React.FC<WhyLoveBannerProps> = ({
   ];
 
   return (
-    <section ref={sectionRef} className="w-full bg-[#FFF8EB] py-8 sm:py-12 px-6 md:px-12 relative z-20">
-      <div className="max-w-7xl mx-auto">
+    <section ref={sectionRef} className="w-full bg-[#FFF8EB] py-8 sm:py-12 px-0 md:px-6 lg:px-12 relative z-20">
+      <div className="max-w-7xl mx-auto px-0 md:px-0">
         <div
           style={{ backgroundColor: bgTints[currentImgIdx % bgTints.length] }}
-          className="relative w-full rounded-[32px] sm:rounded-[44px] overflow-hidden p-6 sm:p-10 lg:p-12 shadow-2xl text-white flex flex-col lg:flex-row items-center justify-between gap-8 transition-colors duration-1000"
+          className="relative w-full rounded-none sm:rounded-[32px] lg:rounded-[44px] overflow-hidden p-5 sm:p-10 lg:p-12 shadow-2xl text-white flex flex-col lg:flex-row items-center justify-between gap-8 transition-colors duration-1000"
         >
           {/* Ambient Lighting */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-black/35 pointer-events-none" />
 
           {/* Left: 4 Points Columns */}
-          <div className="w-full lg:w-7/12 grid grid-cols-1 sm:grid-cols-2 gap-6 z-10">
+          <div className="w-full lg:w-7/12 grid grid-cols-2 sm:grid-cols-2 gap-6 z-10">
             <div className="col-span-full mb-1">
               <span className="font-bubble text-2xl sm:text-3xl font-bold text-white">
                 Why you'll love it

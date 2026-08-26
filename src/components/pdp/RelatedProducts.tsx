@@ -81,23 +81,6 @@ export const RelatedProducts: React.FC<RelatedProductsProps> = ({
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
 
-            {/* Carousel Arrows */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => handleScroll('left')}
-                aria-label="Previous flavor"
-                className="w-8 h-8 rounded-full bg-white shadow-sm text-gray-700 flex items-center justify-center hover:bg-gray-50 border border-[#ECD9C0]"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-              </button>
-              <button
-                onClick={() => handleScroll('right')}
-                aria-label="Next flavor"
-                className="w-8 h-8 rounded-full bg-white shadow-sm text-gray-700 flex items-center justify-center hover:bg-gray-50 border border-[#ECD9C0]"
-              >
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
           </div>
         </div>
 
@@ -151,6 +134,24 @@ export const RelatedProducts: React.FC<RelatedProductsProps> = ({
               </div>
             );
           })}
+        </div>
+
+        {/* Carousel Arrows — mobile only, right-aligned */}
+        <div className="flex md:hidden items-center justify-end gap-2 mt-4">
+          <button
+            onClick={() => handleScroll('left')}
+            aria-label="Previous flavor"
+            className="w-8 h-8 rounded-full bg-white shadow-sm text-gray-700 flex items-center justify-center hover:bg-gray-50 border border-[#ECD9C0] active:scale-90 transition-all"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+          </button>
+          <button
+            onClick={() => handleScroll('right')}
+            aria-label="Next flavor"
+            className="w-8 h-8 rounded-full bg-white shadow-sm text-gray-700 flex items-center justify-center hover:bg-gray-50 border border-[#ECD9C0] active:scale-90 transition-all"
+          >
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
         </div>
       </div>
     </section>

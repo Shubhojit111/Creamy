@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, Send, CheckCircle2, Clock } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { PDPNavbar } from '../components/pdp/PDPNavbar';
-import { AnnouncementBar } from '../components/pdp/AnnouncementBar';
+import { Navbar } from '../components/Navbar';
 import { PDPFooter } from '../components/pdp/PDPFooter';
 
 interface ContactPageProps {
@@ -15,6 +14,7 @@ interface ContactPageProps {
 }
 
 export const ContactPage: React.FC<ContactPageProps> = ({
+  onNavigateToHome,
   onNavigateToCatalog,
   cartCount,
   onOpenCart,
@@ -45,17 +45,22 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417]">
-      <PDPNavbar
+    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417] pt-16 md:pt-20">
+      <Navbar
+        activeNav="CONTACT"
+
+        onNavClick={(item: string) => {
+          if (item === 'HOME') onNavigateToHome();
+          else if (item === 'MENU') onNavigateToCatalog();
+          else if (item === 'ABOUT') onOpenAbout();
+          else if (item === 'CONTACT') {}
+        }}
         cartCount={cartCount}
         onOpenCart={onOpenCart}
-        onOpenSearch={onNavigateToCatalog}
         onOpenAccount={onOpenAccount}
-        onSelectFlavorMenu={onNavigateToCatalog}
       />
-      <AnnouncementBar />
 
-      <section className="w-full max-w-7xl mx-auto px-6 md:px-12 py-10">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Contact Info & Direct Links */}
           <div className="lg:col-span-5 flex flex-col items-start text-left space-y-6">
