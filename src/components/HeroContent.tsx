@@ -124,7 +124,10 @@ export const HeroContent: React.FC<HeroContentProps> = ({
             {/* shine sweep */}
             <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/70 to-transparent" />
             <span className="relative">Order Now</span>
-            <span className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-gradient-to-br from-[#FF8FAB] to-[#ED5B7D] group-hover:scale-110 flex items-center justify-center transition-transform shadow-[0_4px_12px_rgba(237,91,125,0.5)]">
+            <span
+              style={{ backgroundColor: currentFlavor.color.accent }}
+              className="w-7 h-7 md:w-9 md:h-9 rounded-full group-hover:scale-110 flex items-center justify-center transition-transform shadow-[0_4px_12px_rgba(237,91,125,0.5)]"
+            >
               <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
             </span>
           </button>

@@ -72,9 +72,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           animate={{
             backgroundColor: isSolid ? 'rgba(255,253,248,0.96)' : 'rgba(255,255,255,0)',
             boxShadow: isSolid
-              ? '0 12px 32px rgba(60,20,30,0.14), 0 2px 8px rgba(60,20,30,0.08)'
+              ? '0 16px 40px rgba(60,20,30,0.16), 0 2px 8px rgba(60,20,30,0.08), inset 0 1px 0 rgba(255,255,255,0.9)'
               : '0 0px 0px rgba(0,0,0,0)',
-            borderColor: isSolid ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0)',
+            borderColor: isSolid ? 'rgba(201,58,92,0.20)' : 'rgba(255,255,255,0)',
           }}
           transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
           className="pointer-events-auto w-full max-w-7xl flex items-center justify-between gap-2 border"
@@ -106,13 +106,18 @@ export const Navbar: React.FC<NavbarProps> = ({
           <nav
             className="hidden md:flex items-center transition-all duration-500 rounded-full"
             style={{
-              backgroundColor: isSolid ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.16)',
+              backgroundColor: isSolid ? 'rgba(0,0,0,0)' : undefined,
+              backgroundImage: isSolid
+                ? undefined
+                : 'linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.10))',
               border: isSolid ? '1px solid transparent' : '1px solid rgba(255,255,255,0.28)',
               backdropFilter: isSolid ? 'none' : 'blur(14px)',
               WebkitBackdropFilter: isSolid ? 'none' : 'blur(14px)',
               padding: '4px',
               gap: 2,
-              boxShadow: isSolid ? 'none' : '0 4px 18px rgba(0,0,0,0.08)',
+              boxShadow: isSolid
+                ? 'none'
+                : '0 4px 18px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.35)',
             }}
           >
             {navItems.map((item) => {
@@ -132,8 +137,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                       style={{
                         backgroundColor: isSolid ? '#C93A5C' : '#ffffff',
                         boxShadow: isSolid
-                          ? '0 4px 14px rgba(201,58,92,0.4)'
-                          : '0 4px 14px rgba(0,0,0,0.16)',
+                          ? '0 4px 14px rgba(201,58,92,0.45), inset 0 1px 0 rgba(255,255,255,0.35)'
+                          : '0 4px 14px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.8)',
                       }}
                     />
                   )}
@@ -171,9 +176,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <ShoppingBag className="w-[17px] h-[17px] stroke-[2.2]" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#FF3B5D] text-white text-[10px] font-bold min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center shadow-md border-2 border-white">
+                <motion.span
+                  key={cartCount}
+                  initial={{ scale: 0.4 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 18 }}
+                  className="absolute -top-1 -right-1 bg-[#FF3B5D] text-white text-[10px] font-bold min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center shadow-md border-2 border-white"
+                >
                   {cartCount}
-                </span>
+                </motion.span>
               )}
             </button>
 
@@ -187,10 +198,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                   exit={{ opacity: 0, scale: 0.7, width: 0, marginLeft: -10 }}
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   onClick={() => (onOrderNow ? onOrderNow() : onNavClick('MENU'))}
-                  className="overflow-hidden whitespace-nowrap rounded-full text-white text-[13px] font-semibold px-5 py-2.5 hover:brightness-105 active:scale-95"
-                  style={{ backgroundColor: '#ED5B7D', boxShadow: '0 6px 18px rgba(237,91,125,0.4)' }}
+                  className="group relative overflow-hidden whitespace-nowrap rounded-full text-white text-[13px] font-semibold px-5 py-2.5 hover:brightness-105 active:scale-95"
+                  style={{
+                    background: 'linear-gradient(135deg, #F27394, #E14A6E)',
+                    boxShadow:
+                      '0 6px 18px rgba(237,91,125,0.45), inset 0 1px 0 rgba(255,255,255,0.4)',
+                  }}
                 >
-                  Order Now
+                  <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                  <span className="relative">Order Now</span>
                 </motion.button>
               )}
             </AnimatePresence>
@@ -210,9 +226,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <ShoppingBag className="w-4 h-4 stroke-[2.2]" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#FF3B5D] text-white text-[9px] font-bold min-w-[16px] h-4 px-0.5 rounded-full flex items-center justify-center border-2 border-white">
+                <motion.span
+                  key={cartCount}
+                  initial={{ scale: 0.4 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 18 }}
+                  className="absolute -top-1 -right-1 bg-[#FF3B5D] text-white text-[9px] font-bold min-w-[16px] h-4 px-0.5 rounded-full flex items-center justify-center border-2 border-white"
+                >
                   {cartCount}
-                </span>
+                </motion.span>
               )}
             </button>
             <button
@@ -271,12 +293,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.05 + idx * 0.06 }}
                       onClick={() => handleNavItemClick(item.id)}
-                      className={`text-left px-5 py-3.5 text-sm font-bold tracking-wider transition-all duration-200 ${
+                      className={`text-left px-5 py-3.5 text-sm font-bold tracking-wider transition-all duration-200 flex items-center gap-2.5 ${
                         isActive
                           ? 'bg-white/10 text-white border-l-2 border-white'
                           : 'text-white/70 hover:text-white hover:bg-white/5 border-l-2 border-transparent'
                       }`}
                     >
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
+                          isActive ? 'bg-[#FF8FAB] shadow-[0_0_8px_rgba(255,143,171,0.9)]' : 'bg-transparent'
+                        }`}
+                      />
                       {item.label}
                     </motion.button>
                   );

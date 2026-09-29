@@ -54,14 +54,19 @@
   transition: background-color 0.7s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.7s ease, color 0.7s ease;
 }
 
-/* Moving cream waves */
+/* Moving cream waves — every layer loops exactly one tile (-50% of its own
+   2-tile width) so the seam never shows and no edge is ever uncovered */
 @keyframes wave-drift-fast {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 @keyframes wave-drift-slow {
-  from { transform: translateX(-12%); }
-  to { transform: translateX(-62%); }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes wave-drift-shimmer {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 .wave-drift-fast {
   animation: wave-drift-fast 7s linear infinite;
@@ -71,10 +76,15 @@
   animation: wave-drift-slow 13s linear infinite;
   will-change: transform;
 }
+.wave-drift-shimmer {
+  animation: wave-drift-shimmer 10s linear infinite;
+  will-change: transform;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .wave-drift-fast,
-  .wave-drift-slow {
+  .wave-drift-slow,
+  .wave-drift-shimmer {
     animation: none;
   }
 }

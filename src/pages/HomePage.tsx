@@ -128,7 +128,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
 
         {/* Main Hero Content Area — lifted higher */}
-        <div className="relative flex-1 w-full max-w-7xl mx-auto flex flex-col px-5 sm:px-6 md:px-12 z-20 min-h-0 justify-start pt-[70px] md:pt-[92px] pb-24 md:pb-32">
+        <div className="relative flex-1 w-full max-w-7xl mx-auto flex flex-col px-5 sm:px-6 md:px-12 z-20 min-h-0 justify-start pt-[70px] md:pt-[92px] pb-10 md:pb-32">
           {/* Top-Right Size Selector (50g, 75g, 100g) — desktop only */}
           <div className="absolute top-[74px] md:top-[90px] right-5 sm:right-6 md:right-12 z-30 hidden md:block">
             <SizeSelector
@@ -207,7 +207,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         <IcySparkles />
 
         {/* Bottom Cream Wave Transition */}
-        <div className="absolute bottom-[-1px] left-0 right-0 z-10 pointer-events-none">
+        <div className="absolute  bottom-0 left-0 right-0 z-10 pointer-events-none">
           <CreamWave fillColor="#FFF8EB" className="h-28 sm:h-40 md:h-48" />
         </div>
         <div className="absolute bottom-0 left-0 right-0 z-30">
