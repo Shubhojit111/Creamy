@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, ArrowRight, ArrowDown, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Sparkles } from 'lucide-react';
 
 interface BottomControlsProps {
   onPrev: () => void;
@@ -46,25 +46,10 @@ export const BottomControls: React.FC<BottomControlsProps> = ({
   );
 };
 
-/** Scroll cue + socials — sits on the cream wave at the hero bottom */
+/** Socials — sits on the cream wave at the hero bottom */
 export const WaveBar: React.FC = () => {
-  const scrollToNext = () => {
-    const hero = document.querySelector('section');
-    const next = hero?.nextElementSibling;
-    if (next) next.scrollIntoView({ behavior: 'smooth' });
-    else window.scrollBy({ top: window.innerHeight * 0.85, behavior: 'smooth' });
-  };
-
   return (
     <div className="w-full relative z-30 pointer-events-none">
-      {/* Center scroll cue */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-12 sm:bottom-14 md:bottom-16 flex flex-col items-center gap-2 pointer-events-auto">
-        
-        <span className="text-[11px] md:text-xs font-medium text-[#8C7568] whitespace-nowrap">
-          Scroll to Explore 
-        </span>
-      </div>
-
       {/* Right socials */}
       <div className="absolute right-4 sm:right-6 md:right-12 bottom-12 sm:bottom-14 md:bottom-16 flex items-center gap-2 pointer-events-auto">
         <a

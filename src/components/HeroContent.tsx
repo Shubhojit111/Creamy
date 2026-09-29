@@ -38,7 +38,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
             exit={{ opacity: 0, y: -14, transition: { duration: 0.25 } }}
             className="mb-2 md:mb-3 relative"
           >
-            <h1 className="font-bubble text-[44px] sm:text-6xl md:text-[68px] lg:text-[82px] font-bold leading-[0.95] tracking-tight drop-shadow-[0_3px_16px_rgba(0,0,0,0.25)]">
+            <h1 className="font-bubble text-[40px] sm:text-6xl md:text-[68px] lg:text-[82px] font-bold leading-[0.95] tracking-tight drop-shadow-[0_3px_16px_rgba(0,0,0,0.25)]">
               <span className="block overflow-hidden pb-1">
                 <motion.span
                   className="block text-white"
@@ -102,7 +102,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, delay: 0.32 }}
-            className="text-[12px] sm:text-sm md:text-[15px] leading-relaxed mb-5 md:mb-6 max-w-[300px] sm:max-w-[370px] md:max-w-[420px] font-sans text-white/90"
+            className="text-[12px] sm:text-sm md:text-[15px] leading-relaxed mb-4 md:mb-6 max-w-[300px] sm:max-w-[370px] md:max-w-[420px] font-sans text-white/90"
           >
             Crafted with the finest ingredients, our ice creams aren&apos;t just
             delicious — they&apos;re designed for your happiness in every scoop.
@@ -115,26 +115,23 @@ export const HeroContent: React.FC<HeroContentProps> = ({
           initial="hidden"
           animate="show"
           custom={0.42}
-          className="flex flex-wrap items-center gap-3"
+          className="flex flex-wrap items-center gap-2 md:gap-3"
         >
           <button
             onClick={onOrderNow}
-            className="group relative overflow-hidden inline-flex items-center gap-3 bg-[#FFF3D6] hover:bg-white text-[#2B1610] font-bold text-[13px] md:text-sm pl-6 pr-1.5 py-1.5 rounded-full shadow-[0_10px_28px_rgba(0,0,0,0.28)] hover:shadow-[0_14px_34px_rgba(0,0,0,0.34)] hover:scale-[1.04] active:scale-95 transition-all duration-200"
+            className="group relative overflow-hidden inline-flex items-center gap-2 md:gap-3 bg-[#FFF3D6] hover:bg-white text-[#2B1610] font-bold text-xs md:text-sm pl-4 md:pl-6 pr-1 md:pr-1.5 py-1 md:py-1.5 rounded-full shadow-[0_10px_28px_rgba(0,0,0,0.28)] hover:shadow-[0_14px_34px_rgba(0,0,0,0.34)] hover:scale-[1.04] active:scale-95 transition-all duration-200"
           >
             {/* shine sweep */}
             <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/70 to-transparent" />
             <span className="relative">Order Now</span>
-            <span className="relative flex items-center gap-1 text-[#2B1610]">
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-              <span className="w-9 h-9 rounded-full bg-gradient-to-br from-[#FF8FAB] to-[#ED5B7D] group-hover:scale-110 flex items-center justify-center transition-transform shadow-[0_4px_12px_rgba(237,91,125,0.5)]">
-                <ArrowRight className="w-4 h-4 text-white" />
-              </span>
+            <span className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-gradient-to-br from-[#FF8FAB] to-[#ED5B7D] group-hover:scale-110 flex items-center justify-center transition-transform shadow-[0_4px_12px_rgba(237,91,125,0.5)]">
+              <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
             </span>
           </button>
 
           <button
             onClick={onSeeMenu}
-            className="relative overflow-hidden text-white font-semibold text-[13px] md:text-sm px-6 py-3.5 rounded-full border border-white/40 bg-white/5 backdrop-blur-sm hover:bg-white/15 hover:scale-[1.04] active:scale-95 transition-all duration-200"
+            className="relative overflow-hidden text-white font-semibold text-xs md:text-sm px-4 md:px-6 py-2.5 md:py-3.5 rounded-full border border-white/40 bg-white/5 backdrop-blur-sm hover:bg-white/15 hover:scale-[1.04] active:scale-95 transition-all duration-200"
           >
             See Menu Items
           </button>
@@ -147,7 +144,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
           animate="show"
           custom={0.55}
           onClick={onOpenReviews}
-          className="cursor-pointer group flex items-center gap-3 mt-5 md:mt-6 text-left w-fit"
+          className="cursor-pointer group flex items-center gap-3 mt-4 md:mt-6 text-left w-fit"
         >
           <span className="flex items-center -space-x-2.5">
             {[

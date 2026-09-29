@@ -241,14 +241,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-[1000] bg-black/50 backdrop-blur-sm md:hidden"
             />
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 280 }}
-              className="fixed top-0 right-0 z-[70] h-full w-[68%] max-w-[300px] bg-[#2E170F] shadow-2xl flex flex-col md:hidden"
+              className="fixed top-0 right-0 z-[1001] h-full w-[68%] max-w-[300px] bg-[#2E170F] shadow-2xl flex flex-col md:hidden"
             >
               <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
                 <span className="font-bubble text-xl font-bold text-white">Creamy</span>
@@ -286,7 +286,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="mt-auto px-5 py-4 border-t border-white/10 space-y-3">
                 <button
                   onClick={() => (onOrderNow ? onOrderNow() : handleNavItemClick('MENU'))}
-                  className="w-full rounded-full text-white text-sm font-semibold px-5 py-3"
+                  className="w-full rounded-full text-white text-[13px] font-semibold px-5 py-2.5"
                   style={{ backgroundColor: '#ED5B7D' }}
                 >
                   Order Now

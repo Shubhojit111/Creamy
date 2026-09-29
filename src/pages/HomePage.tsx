@@ -96,12 +96,25 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* =========================================================================
           SECTION 1: HERO SECTION (Full Width Viewport, Exact Design)
           ========================================================================= */}
+      {/* Navbar — rendered OUTSIDE the hero section on purpose.
+          The hero <section> creates its own stacking context (relative + z-10),
+          which would trap a fixed navbar inside it and let later z-20 sections
+          and z-50 modals paint over it. At page root it stays truly on top. */}
+      <Navbar
+        activeNav={activeNav}
+        onNavClick={handleNavClick}
+        cartCount={cartCount}
+        onOpenCart={onOpenCart}
+        onOpenAccount={onOpenAccount}
+        onOrderNow={() => onNavigateToProduct(currentFlavor.id)}
+      />
+
       <section
         ref={heroRef}
         style={{
           backgroundColor: currentFlavor.color.card,
         }}
-        className="w-full min-h-[640px] sm:min-h-[720px] lg:h-screen lg:min-h-[740px] lg:max-h-[920px] relative flex flex-col transition-colors duration-700 bg-transition overflow-hidden z-10"
+        className="w-full min-h-[560px] sm:min-h-[720px] lg:h-screen lg:min-h-[740px] lg:max-h-[920px] relative flex flex-col transition-colors duration-700 bg-transition overflow-hidden z-10"
       >
         {/* Rich premium lighting like the reference — soft glows + light streaks */}
         <div className="absolute inset-0 pointer-events-none z-0">
@@ -114,20 +127,10 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div className="absolute top-[-40px] right-[24%] w-[90px] h-[380px] rotate-[-14deg] bg-gradient-to-b from-white/20 to-transparent blur-[22px] rounded-full" />
         </div>
 
-        {/* Navbar — fixed, morphs to white sticky pill on scroll */}
-        <Navbar
-          activeNav={activeNav}
-          onNavClick={handleNavClick}
-          cartCount={cartCount}
-          onOpenCart={onOpenCart}
-          onOpenAccount={onOpenAccount}
-          onOrderNow={() => onNavigateToProduct(currentFlavor.id)}
-        />
-
         {/* Main Hero Content Area — lifted higher */}
-        <div className="relative flex-1 w-full max-w-7xl mx-auto flex flex-col px-5 sm:px-6 md:px-12 z-20 min-h-0 justify-start pt-[78px] md:pt-[92px] pb-28 md:pb-32">
-          {/* Top-Right Size Selector (50g, 75g, 100g) */}
-          <div className="absolute top-[74px] md:top-[90px] right-5 sm:right-6 md:right-12 z-30">
+        <div className="relative flex-1 w-full max-w-7xl mx-auto flex flex-col px-5 sm:px-6 md:px-12 z-20 min-h-0 justify-start pt-[70px] md:pt-[92px] pb-24 md:pb-32">
+          {/* Top-Right Size Selector (50g, 75g, 100g) — desktop only */}
+          <div className="absolute top-[74px] md:top-[90px] right-5 sm:right-6 md:right-12 z-30 hidden md:block">
             <SizeSelector
               sizes={currentFlavor.sizes}
               selectedSize={selectedSize}
@@ -137,9 +140,9 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
 
           {/* Grid Layout: Left Hero Text + Right Product Stage */}
-          <div className="relative flex-1 grid grid-cols-1 md:grid-cols-12 h-full items-start md:items-center gap-2 md:gap-0">
+          <div className="relative flex-1 grid grid-cols-1 md:grid-cols-12 h-full items-start md:items-center gap-0">
             {/* Left Hero Column — starts at top */}
-            <div className="md:col-span-6 h-full flex flex-col justify-start relative z-20 pt-8 md:pt-6">
+            <div className="md:col-span-6 h-full flex flex-col justify-start relative z-20 pt-4 md:pt-6">
               <HeroContent
                 currentFlavor={currentFlavor}
                 onOrderNow={() => onNavigateToProduct(currentFlavor.id)}
@@ -149,16 +152,16 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
 
             {/* Right Hero Column: Product tubs (unchanged images) */}
-            <div className="md:col-span-6 h-full w-full flex flex-col items-center justify-center relative z-10 min-h-[380px] sm:min-h-[500px] md:min-h-[560px] md:-mt-8">
+            <div className="md:col-span-6 h-full w-full flex flex-col items-center justify-center relative z-10 min-h-[300px] sm:min-h-[500px] md:min-h-[560px] -mt-2 md:-mt-8">
               {/* icy frost glow */}
               <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[70%] h-40 rounded-full bg-cyan-100/20 blur-3xl pointer-events-none" />
               {/* flavor glow pedestal */}
               <div
                 key={currentFlavor.id + "-glow"}
-                className="absolute bottom-24 md:bottom-24 left-1/2 -translate-x-1/2 w-[78%] h-16 rounded-[100%] blur-2xl opacity-60 pointer-events-none"
+                className="absolute bottom-16 md:bottom-24 left-1/2 -translate-x-1/2 w-[78%] h-16 rounded-[100%] blur-2xl opacity-60 pointer-events-none"
                 style={{ background: currentFlavor.color.glow }}
               />
-              <div className="absolute bottom-[104px] md:bottom-[104px] left-1/2 -translate-x-1/2 w-[62%] h-10 rounded-[100%] bg-black/25 blur-xl pointer-events-none" />
+              <div className="absolute bottom-[72px] md:bottom-[104px] left-1/2 -translate-x-1/2 w-[62%] h-10 rounded-[100%] bg-black/25 blur-xl pointer-events-none" />
               <div className="relative flex-1 w-full flex items-center justify-center">
                 <IceCreamCarousel
                   flavors={FLAVORS}
@@ -171,12 +174,12 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
 
                 {/* Previous arrow pill — bottom of the ice creams */}
-                <div className="absolute -bottom-10 -right-20 z-30 pb-16 md:pb-20 pt-1">
+                <div className="absolute -bottom-16 -right-20 z-30  pb-10 md:pb-20 pt-0">
                   <BottomControls onPrev={handlePrev} onNext={handleNext} />
                 </div>
 
               {/* Real Fruit Flavour handwritten note */}
-              <div className="absolute top-6 md:top-20 right-0 md:right-2 z-30 hidden sm:flex items-start gap-1.5 rotate-[4deg] pointer-events-none">
+              <div className="absolute top-6 md:top-24 right-0 md:right-2 z-30 hidden sm:flex items-start gap-1.5 rotate-[4deg] pointer-events-none">
                 <svg
                   className="w-10 h-10 mt-4 text-white/90"
                   viewBox="0 0 40 40"
