@@ -53,3 +53,28 @@
 .bg-transition {
   transition: background-color 0.7s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.7s ease, color 0.7s ease;
 }
+
+/* Moving cream waves */
+@keyframes wave-drift-fast {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes wave-drift-slow {
+  from { transform: translateX(-12%); }
+  to { transform: translateX(-62%); }
+}
+.wave-drift-fast {
+  animation: wave-drift-fast 7s linear infinite;
+  will-change: transform;
+}
+.wave-drift-slow {
+  animation: wave-drift-slow 13s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-drift-fast,
+  .wave-drift-slow {
+    animation: none;
+  }
+}

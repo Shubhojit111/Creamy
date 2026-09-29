@@ -44,10 +44,12 @@ export const ProductPage: React.FC<ProductPageProps> = ({
   }, [currentFlavor.id]);
 
   return (
-    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417] pt-16 md:pt-20">
+    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417] pt-24 md:pt-28">
       {/* 1. Header / Navbar */}
       <Navbar
         activeNav="MENU"
+        forceSolid
+        onOrderNow={() => document.getElementById('pdp-add-to-cart')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
         onNavClick={(item: string) => {
           if (item === 'HOME') onNavigateToHome();
           else if (item === 'MENU') onOpenMenu();
@@ -117,3 +119,4 @@ export const ProductPage: React.FC<ProductPageProps> = ({
     </div>
   );
 };
+

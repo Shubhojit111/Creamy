@@ -16,7 +16,11 @@ export const SizeSelector: React.FC<SizeSelectorProps> = ({
   return (
     <div className="flex items-center gap-2 z-30">
       {heroSizes.map((s) => {
-        const isSelected = selectedSize === s || (selectedSize.includes('16') && s === '100g') || (selectedSize.includes('50') && s === '50g');
+        const isSelected =
+          selectedSize === s ||
+          (selectedSize.includes('16') && s === '100g') ||
+          (selectedSize.includes('50') && s === '50g') ||
+          (selectedSize.includes('32') && s === '75g');
         return (
           <button
             key={s}

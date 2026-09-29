@@ -109,11 +109,12 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
   }, [selectedCategory, searchQuery, selectedFlavorProfile, selectedSize, maxPrice, selectedDietary, sortBy]);
 
   return (
-    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417] pt-16 md:pt-20">
+    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417] pt-24 md:pt-28">
       {/* 1. Header & Announcement Bar */}
       <Navbar
         activeNav="MENU"
-
+        forceSolid
+        onOrderNow={() => onNavigateToProduct('cookies')}
         onNavClick={(item: string) => {
           if (item === 'HOME') onNavigateToHome();
           else if (item === 'MENU') {}
@@ -595,3 +596,4 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({
     </div>
   );
 };
+

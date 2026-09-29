@@ -5,8 +5,9 @@ import { Navbar } from "../components/Navbar";
 import { HeroContent } from "../components/HeroContent";
 import { SizeSelector } from "../components/SizeSelector";
 import { IceCreamCarousel } from "../components/IceCreamCarousel";
-import { BottomControls } from "../components/BottomControls";
+import { BottomControls, WaveBar } from "../components/BottomControls";
 import { CreamWave } from "../components/CreamWave";
+import { IcySparkles } from "../components/IcySparkles";
 import { WhyLove } from "../components/WhyLove";
 import { CustomerFavorites } from "../components/CustomerFavorites";
 import { LimitedOffer } from "../components/LimitedOffer";
@@ -100,29 +101,33 @@ export const HomePage: React.FC<HomePageProps> = ({
         style={{
           backgroundColor: currentFlavor.color.card,
         }}
-        className="w-full min-h-[520px] sm:min-h-[660px] lg:h-screen lg:min-h-[700px] lg:max-h-[880px] relative flex flex-col justify-between transition-colors duration-700 bg-transition overflow-hidden z-10"
+        className="w-full min-h-[640px] sm:min-h-[720px] lg:h-screen lg:min-h-[740px] lg:max-h-[920px] relative flex flex-col transition-colors duration-700 bg-transition overflow-hidden z-10"
       >
-        {/* Subtle radial lighting for 3D depth & floating background cookie crumbs */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-black/15 via-transparent to-white/10 pointer-events-none z-0" />
+        {/* Rich premium lighting like the reference — soft glows + light streaks */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-white/15" />
+          <div className="absolute -top-32 -left-32 w-[480px] h-[480px] rounded-full bg-white/15 blur-[100px]" />
+          <div className="absolute top-0 right-[-120px] w-[520px] h-[520px] rounded-full bg-white/20 blur-[110px]" />
+          <div className="absolute bottom-[-140px] left-[-80px] w-[380px] h-[380px] rounded-full bg-black/10 blur-[80px]" />
+          {/* silky light streaks */}
+          <div className="absolute top-[-60px] left-[8%] w-[220px] h-[420px] rotate-[18deg] bg-gradient-to-b from-white/25 to-transparent blur-[28px] rounded-full" />
+          <div className="absolute top-[-40px] right-[24%] w-[90px] h-[380px] rotate-[-14deg] bg-gradient-to-b from-white/20 to-transparent blur-[22px] rounded-full" />
+        </div>
 
-        {/* Floating chocolate/flavor crumbs */}
-        <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-black/20 rounded-sm rotate-45 pointer-events-none animate-float-slow" />
-        <div className="absolute top-1/3 right-1/3 w-4 h-4 bg-black/15 rounded-sm -rotate-12 pointer-events-none animate-float-slow" />
-        <div className="absolute top-2/3 left-1/3 w-2.5 h-2.5 bg-black/20 rounded-sm rotate-12 pointer-events-none animate-float-slow" />
-
-        {/* Navbar */}
+        {/* Navbar — fixed, morphs to white sticky pill on scroll */}
         <Navbar
           activeNav={activeNav}
           onNavClick={handleNavClick}
           cartCount={cartCount}
           onOpenCart={onOpenCart}
           onOpenAccount={onOpenAccount}
+          onOrderNow={() => onNavigateToProduct(currentFlavor.id)}
         />
 
-        {/* Main Hero Content Area */}
-        <div className="relative flex-1 w-full max-w-7xl mx-auto flex flex-col px-4 sm:px-6 md:px-12 z-20 min-h-0 justify-center">
+        {/* Main Hero Content Area — lifted higher */}
+        <div className="relative flex-1 w-full max-w-7xl mx-auto flex flex-col px-5 sm:px-6 md:px-12 z-20 min-h-0 justify-start pt-[78px] md:pt-[92px] pb-28 md:pb-32">
           {/* Top-Right Size Selector (50g, 75g, 100g) */}
-          <div className="absolute top-8 right-4 md:right-12 z-30">
+          <div className="absolute top-[74px] md:top-[90px] right-5 sm:right-6 md:right-12 z-30">
             <SizeSelector
               sizes={currentFlavor.sizes}
               selectedSize={selectedSize}
@@ -131,10 +136,10 @@ export const HomePage: React.FC<HomePageProps> = ({
             />
           </div>
 
-          {/* Grid Layout: Left Hero Text + Center/Right Interactive Carousel */}
-          <div className="relative flex-1 grid grid-cols-1 md:grid-cols-12 h-full items-center gap-6 md:gap-0 pb-8 md:pb-0">
-            {/* Left Hero Column */}
-            <div className="md:col-span-5 h-full flex flex-col justify-center relative z-20 pt-4 md:pt-0">
+          {/* Grid Layout: Left Hero Text + Right Product Stage */}
+          <div className="relative flex-1 grid grid-cols-1 md:grid-cols-12 h-full items-start md:items-center gap-2 md:gap-0">
+            {/* Left Hero Column — starts at top */}
+            <div className="md:col-span-6 h-full flex flex-col justify-start relative z-20 pt-8 md:pt-6">
               <HeroContent
                 currentFlavor={currentFlavor}
                 onOrderNow={() => onNavigateToProduct(currentFlavor.id)}
@@ -143,28 +148,67 @@ export const HomePage: React.FC<HomePageProps> = ({
               />
             </div>
 
-            {/* Right Hero Column: Central 3D Ice Cream Carousel Stage */}
-            <div className="md:col-span-7 h-full w-full flex items-center justify-center relative z-10 min-h-[240px] sm:min-h-[400px]">
-              <IceCreamCarousel
-                flavors={FLAVORS}
-                currentIndex={flavorIndex}
-                direction={direction}
-                onSelectFlavor={handleSelectFlavor}
-                onNext={handleNext}
-                onPrev={handlePrev}
+            {/* Right Hero Column: Product tubs (unchanged images) */}
+            <div className="md:col-span-6 h-full w-full flex flex-col items-center justify-center relative z-10 min-h-[380px] sm:min-h-[500px] md:min-h-[560px] md:-mt-8">
+              {/* icy frost glow */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-[70%] h-40 rounded-full bg-cyan-100/20 blur-3xl pointer-events-none" />
+              {/* flavor glow pedestal */}
+              <div
+                key={currentFlavor.id + "-glow"}
+                className="absolute bottom-24 md:bottom-24 left-1/2 -translate-x-1/2 w-[78%] h-16 rounded-[100%] blur-2xl opacity-60 pointer-events-none"
+                style={{ background: currentFlavor.color.glow }}
               />
+              <div className="absolute bottom-[104px] md:bottom-[104px] left-1/2 -translate-x-1/2 w-[62%] h-10 rounded-[100%] bg-black/25 blur-xl pointer-events-none" />
+              <div className="relative flex-1 w-full flex items-center justify-center">
+                <IceCreamCarousel
+                  flavors={FLAVORS}
+                  currentIndex={flavorIndex}
+                  direction={direction}
+                  onSelectFlavor={handleSelectFlavor}
+                  onNext={handleNext}
+                  onPrev={handlePrev}
+                />
+              </div>
+
+                {/* Previous arrow pill — bottom of the ice creams */}
+                <div className="absolute -bottom-10 -right-20 z-30 pb-16 md:pb-20 pt-1">
+                  <BottomControls onPrev={handlePrev} onNext={handleNext} />
+                </div>
+
+              {/* Real Fruit Flavour handwritten note */}
+              <div className="absolute top-6 md:top-20 right-0 md:right-2 z-30 hidden sm:flex items-start gap-1.5 rotate-[4deg] pointer-events-none">
+                <svg
+                  className="w-10 h-10 mt-4 text-white/90"
+                  viewBox="0 0 40 40"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.8}
+                  strokeLinecap="round"
+                >
+                  <path d="M32 6c-8 0-16 6-19 16" />
+                  <path d="M13 22l-2.5 4L15 25" />
+                </svg>
+                <span className="font-bubble italic text-white text-[15px] md:text-base leading-[1.15] drop-shadow-md">
+                  Real
+                  <br />
+                  Fruit
+                  <br />
+                  Flavour
+                </span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Controls (Carousel Arrows & Social Links) */}
+        {/* Icy frost sparkles over the whole hero */}
+        <IcySparkles />
 
         {/* Bottom Cream Wave Transition */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
-          <CreamWave fillColor="#FFF8EB" className="h-24 sm:h-44 md:h-52" />
+        <div className="absolute bottom-[-1px] left-0 right-0 z-10 pointer-events-none">
+          <CreamWave fillColor="#FFF8EB" className="h-28 sm:h-40 md:h-48" />
         </div>
-        <div className="relative z-30 max-w-7xl w-full">
-          <BottomControls onPrev={handlePrev} onNext={handleNext} />
+        <div className="absolute bottom-0 left-0 right-0 z-30">
+          <WaveBar />
         </div>
       </section>
 

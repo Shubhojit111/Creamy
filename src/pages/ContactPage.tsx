@@ -45,10 +45,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417] pt-16 md:pt-20">
+    <div className="w-full min-h-screen bg-[#FFF8EB] text-gray-900 overflow-x-hidden font-sans selection:bg-[#4A2417]/20 selection:text-[#4A2417] pt-24 md:pt-28">
       <Navbar
         activeNav="CONTACT"
-
+        forceSolid
+        onOrderNow={onNavigateToCatalog}
         onNavClick={(item: string) => {
           if (item === 'HOME') onNavigateToHome();
           else if (item === 'MENU') onNavigateToCatalog();
@@ -204,3 +205,4 @@ export const ContactPage: React.FC<ContactPageProps> = ({
     </div>
   );
 };
+
