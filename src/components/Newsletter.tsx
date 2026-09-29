@@ -28,7 +28,7 @@ export const Newsletter: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="relative w-full bg-[#753D2A] rounded-[32px] sm:rounded-[40px] overflow-hidden p-6 sm:p-10 lg:p-12 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6">
           {/* Top Right Cream Drips */}
-          <div className="absolute -top-4 sm:top-4 sm -right-6 sm:right-4 w-44 sm:w-60 h-20 pointer-events-none">
+          <div className="absolute -top-6 sm:top-0 right-0 sm:-right-6 w-44 sm:w-60 h-20 pointer-events-none">
             <svg
               viewBox="0 0 240 80"
               fill="none"
