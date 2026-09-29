@@ -174,7 +174,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
 
                 {/* Previous arrow pill — bottom of the ice creams */}
-                <div className="absolute -bottom-16 -right-20 z-30  pb-10 md:pb-20 pt-0">
+                <div className="hidden sm:absolute sm:-bottom-16 sm:-right-20 z-30  pb-10 md:pb-20 pt-0">
                   <BottomControls onPrev={handlePrev} onNext={handleNext} />
                 </div>
 
